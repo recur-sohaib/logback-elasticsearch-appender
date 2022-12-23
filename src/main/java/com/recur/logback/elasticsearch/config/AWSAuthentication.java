@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/*
 import com.amazonaws.ReadLimitInfo;
 import com.amazonaws.SignableRequest;
 import com.amazonaws.auth.AWS4Signer;
@@ -20,7 +20,7 @@ import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.regions.DefaultAwsRegionProviderChain;
 import com.amazonaws.util.StringInputStream;
-
+*/
 /**
  * This class implements Amazon AWS v4 Signature signing for ElasticSearch.
  *
@@ -28,6 +28,12 @@ import com.amazonaws.util.StringInputStream;
  */
 public class AWSAuthentication implements Authentication {
 
+	@Override
+	public void addAuth(HttpURLConnection urlConnection, String body) {
+		// TODO Auto-generated method stub
+		
+	}
+/*
     private final AWS4Signer signer;
     private final AWSCredentials credentials;
 
@@ -45,9 +51,9 @@ public class AWSAuthentication implements Authentication {
         signer.sign(new URLConnectionSignableRequest(urlConnection, body), credentials);
     }
 
-    /**
-     * Wrapper for signing a HttpURLConnection
-     */
+    
+    //  Wrapper for signing a HttpURLConnection
+     
     private static class URLConnectionSignableRequest implements SignableRequest<HttpURLConnection> {
 
         private final HttpURLConnection urlConnection;
@@ -58,7 +64,7 @@ public class AWSAuthentication implements Authentication {
             this.urlConnection = urlConnection;
             this.body = body;
             addHeader("User-Agent","ElasticSearchWriter/1.0");
-            addHeader("Accept","*/*");
+            addHeader("Accept","**");
             addHeader("Content-Type","application/json");
             addHeader("Content-Length",String.valueOf(body.length()));
         }
@@ -138,5 +144,6 @@ public class AWSAuthentication implements Authentication {
             return null;
         }
     }
+    */
 }
 

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.recur</groupId>
@@ -13,37 +11,19 @@
 	<description>Send log events directly from Logback to Elasticsearch</description>
 	<url>https://github.com/recur/logback-elasticsearch-appender</url>
 
-	<licenses>
-		<license>
-			<name>The MIT License (MIT)</name>
-			<url>http://opensource.org/licenses/MIT</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
-	<organization>
-		<name>Internet Item</name>
-		<url>https://recur.com/</url>
-	</organization>
-
-	<scm>
-		<connection>scm:git:https://github.com/recur/logback-elasticsearch-appender.git</connection>
-		<developerConnection>scm:git:https://github.com/recur/logback-elasticsearch-appender.git</developerConnection>
-		<url>https://github.com/recur/logback-elasticsearch-appender</url>
-		<tag>HEAD</tag>
-	</scm>
-
-	<developers>
-		<developer>
-			<name>Adam Batkin</name>
-			<email>adam@batkin.net</email>
-		</developer>
-	</developers>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<github.global.server>github</github.global.server>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>RecurClub</name>
+			<url>https://github.com/RecurClub/mvn-repo</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -69,12 +49,13 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.8.0</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-core</artifactId>
 			<version>1.11.31</version>
 			<scope>provided</scope>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -93,6 +74,16 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<build>
 		<plugins>
@@ -115,8 +106,35 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<configuration>
+					<repositoryName>
+						mvn-repo
+						</repositoryName>
+					<repositoryOwner>RecurClub</repositoryOwner>
+					<!-- The commit message -->
+					<message>Building site for logback</message>
+					<!-- The location where the site is uploaded -->
+					<path>logback</path>
+					<!-- Use merge or override the content -->
+					<merge>true</merge>
+
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
 
 	<profiles>
 		<profile>
@@ -166,17 +184,42 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>
+		<profile>
+			<id>github</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>github</id>
+					<url>
+						https://github.com/RecurClub/mvn-repo
+					</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
 
+		</profile>
+
+
+	</profiles>
+	<!--
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>recur-recur-maven-java</id>
+			<name>recur-recur-maven-java</name>
+			<url>https://recur-965455568276.d.codeartifact.ap-south-1.amazonaws.com/maven/recur-maven-java/</url>
 		</repository>
 	</distributionManagement>
+	-->
 
 </project>
