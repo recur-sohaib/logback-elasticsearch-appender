@@ -9,7 +9,7 @@
 
 	<name>Logback Elasticsearch Appender</name>
 	<description>Send log events directly from Logback to Elasticsearch</description>
-	<url>https://maven.pkg.github.com/recur-sohaib/logback-elasticsearch-appender</url>
+	<url>https://github.com/recur-sohaib/logback-elasticsearch-appender</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,7 +21,7 @@
 		<repository>
 			<id>github</id>
 			<name>recur-sohaib</name>
-			<url>https://maven.pkg.github.com/recur-sohaib/logback-elasticsearch-appender</url>
+			<url>https://github.com/recur-sohaib/logback-elasticsearch-appender</url>
 		</repository>
 	</distributionManagement>
 
